@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>E-NRG AI Risk Dashboard</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<style>
+body{
+font-family:Arial;
+background:#f4f6f9;
+margin:40px;
+}
+
+h1{
+text-align:center;
+}
+
+.container{
+display:grid;
+grid-template-columns:1fr 1fr;
+grid-gap:20px;
+}
+
+.card{
+background:white;
+padding:20px;
+border-radius:10px;
+box-shadow:0 2px 8px rgba(0,0,0,0.1);
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+}
+
+th,td{
+padding:8px;
+border-bottom:1px solid #ddd;
+text-align:left;
+}
+
+.priority{
+color:red;
+font-weight:bold;
+}
+
+</style>
+</head>
+
+<body>
+
+<h1>E-NRG AI Risk Management Dashboard</h1>
+
+<div class="container">
+
+<div class="card">
+<h2>Top 3 AI Risks</h2>
+
+<table>
+<tr>
+<th>Risk</th>
+<th>Probability</th>
+<th>Severity</th>
+<th>Criticality</th>
+</tr>
+
+<tr>
+<td>CEO Deepfake Fraud</td>
+<td>4</td>
+<td>5</td>
+<td class="priority">20</td>
+</tr>
+
+<tr>
+<td>LLM Phishing Emails</td>
+<td>5</td>
+<td>4</td>
+<td class="priority">20</td>
+</tr>
+
+<tr>
+<td>Training Data Poisoning</td>
+<td>3</td>
+<td>4</td>
+<td>12</td>
+</tr>
+
+</table>
+</div>
+
+<div class="card">
+<h2>Risk Criticality Matrix (P × S)</h2>
+<canvas id="riskChart"></canvas>
+</div>
+
+<div class="card">
+<h2>PESTLEO External Threats</h2>
+
+<ul>
+<li><b>Political:</b> Critical infrastructure targeted by cyberwarfare</li>
+<li><b>Economic:</b> Financial fraud via AI impersonation</li>
+<li><b>Social:</b> Employee susceptibility to AI phishing</li>
+<li><b>Technological:</b> Deepfake voice synthesis</li>
+<li><b>Legal:</b> GDPR data breach liabilities</li>
+<li><b>Environmental:</b> Energy grid disruption risk</li>
+<li><b>Organizational:</b> Weak verification processes</li>
+</ul>
+
+</div>
+
+<div class="card">
+<h2>Mitigation Plan</h2>
+
+<ul>
+<li><b>Preventive:</b> AI-phishing training for employees</li>
+<li><b>Protective:</b> Multi-factor approval for wire transfers</li>
+<li><b>Protective:</b> Voice authentication for executives</li>
+<li><b>Curative:</b> Incident response protocol</li>
+<li><b>Curative:</b> Financial fraud recovery procedures</li>
+</ul>
+
+</div>
+
+</div>
+
+<script>
+
+const ctx = document.getElementById('riskChart');
+
+new Chart(ctx, {
+type: 'scatter',
+data: {
+datasets: [{
+label: 'AI Risks',
+data: [
+{x:4,y:5},
+{x:5,y:4},
+{x:3,y:4}
+]
+}]
+},
+options: {
+scales: {
+x: {
+title:{display:true,text:'Probability'}
+},
+y: {
+title:{display:true,text:'Severity'}
+}
+}
+}
+});
+
+</script>
+
+</body>
+</html>
