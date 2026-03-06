@@ -1,70 +1,89 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-
 <meta charset="UTF-8">
-<title>E-NRG AI Risk War-Room Dashboard</title>
+<title>E-NRG AI Deepfake Risk Dashboard</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Orbitron:wght@500&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <style>
 
+*{
+box-sizing:border-box;
+}
+
 body{
-margin:20px;
+margin:0;
+padding:20px;
 font-family:Inter;
-background:#0a0f1e;
+background:#0b1120;
 color:white;
 }
 
 h1{
 font-family:Orbitron;
 font-size:26px;
-margin-bottom:10px;
+margin-bottom:15px;
 }
 
-.container{
+.dashboard{
 display:grid;
 grid-template-columns:1.2fr 1fr 1fr;
-grid-template-rows:200px 230px;
-gap:15px;
-height:90vh;
+gap:18px;
 }
 
 .card{
 background:#111827;
-padding:15px;
-border-radius:10px;
-box-shadow:0 6px 18px rgba(0,0,0,.6);
+border-radius:12px;
+padding:16px;
+box-shadow:0 10px 25px rgba(0,0,0,.6);
 }
 
 .card h3{
-margin-top:0;
 font-size:15px;
+margin-bottom:10px;
 color:#9ca3af;
 }
 
-.metric{
+.metricRow{
 display:flex;
-justify-content:space-between;
+gap:10px;
 margin-top:10px;
 }
 
-.big{
-font-size:28px;
+.metric{
+background:#020617;
+padding:12px;
+border-radius:8px;
+flex:1;
+text-align:center;
+}
+
+.metric h2{
+margin:0;
+font-size:24px;
 color:#38bdf8;
-font-weight:600;
+}
+
+.metric p{
+font-size:12px;
+color:#9ca3af;
+margin-top:5px;
 }
 
 .matrix{
 display:grid;
-grid-template-columns:repeat(4,45px);
-grid-template-rows:repeat(4,45px);
-gap:3px;
+grid-template-columns:repeat(4,1fr);
+gap:4px;
 margin-top:10px;
 }
 
-.cell{border-radius:4px}
+.cell{
+aspect-ratio:1/1;
+border-radius:4px;
+}
 
 .low{background:#22c55e}
 .med{background:#facc15}
@@ -73,8 +92,8 @@ margin-top:10px;
 
 table{
 width:100%;
-font-size:13px;
 border-collapse:collapse;
+font-size:13px;
 }
 
 td{
@@ -87,75 +106,92 @@ margin-bottom:6px;
 font-size:13px;
 }
 
+canvas{
+width:100%!important;
+height:170px!important;
+}
+
+@media (max-width:1100px){
+.dashboard{
+grid-template-columns:1fr 1fr;
+}
+}
+
+@media (max-width:700px){
+.dashboard{
+grid-template-columns:1fr;
+}
+}
+
 </style>
 </head>
 
 <body>
 
-<h1>E-NRG AI Decision-Integrity Risk Dashboard</h1>
+<h1>E-NRG Decision-Integrity Risk Dashboard</h1>
 
-<div class="container">
+<div class="dashboard">
 
 <div class="card">
 
 <h3>Incident Overview</h3>
 
+<div class="metricRow">
+
 <div class="metric">
-<span>Attack Type</span>
-<span>CEO Voice Deepfake</span>
+<h2>€5M</h2>
+<p>Fraud Attempt</p>
 </div>
 
 <div class="metric">
-<span>Target</span>
-<span>Finance Department</span>
+<h2>Deepfake</h2>
+<p>Attack Type</p>
 </div>
 
 <div class="metric">
-<span>Fraud Attempt</span>
-<span class="big">€5M</span>
+<h2>Blocked</h2>
+<p>Status</p>
 </div>
 
-<div class="metric">
-<span>Status</span>
-<span style="color:#22c55e">Blocked</span>
 </div>
 
 <p style="font-size:13px;color:#9ca3af;margin-top:10px">
-AI generated executive voice attempted to manipulate financial authorization and bypass approval controls.
+AI-generated CEO voice attempted to authorize an urgent financial transfer,
+exposing a decision-integrity vulnerability in executive approval workflows.
 </p>
 
 </div>
 
 <div class="card">
 
-<h3>Critical Risk Assessment (P × S)</h3>
+<h3>Risk Criticality Matrix (P × S)</h3>
 
 <div class="matrix">
 
-<div class="med"></div>
-<div class="high"></div>
-<div class="critical"></div>
-<div class="critical"></div>
+<div class="cell med"></div>
+<div class="cell high"></div>
+<div class="cell critical"></div>
+<div class="cell critical"></div>
 
-<div class="med"></div>
-<div class="high"></div>
-<div class="high"></div>
-<div class="critical"></div>
+<div class="cell med"></div>
+<div class="cell high"></div>
+<div class="cell high"></div>
+<div class="cell critical"></div>
 
-<div class="low"></div>
-<div class="med"></div>
-<div class="high"></div>
-<div class="high"></div>
+<div class="cell low"></div>
+<div class="cell med"></div>
+<div class="cell high"></div>
+<div class="cell high"></div>
 
-<div class="low"></div>
-<div class="low"></div>
-<div class="med"></div>
-<div class="med"></div>
+<div class="cell low"></div>
+<div class="cell low"></div>
+<div class="cell med"></div>
+<div class="cell med"></div>
 
 </div>
 
-<p style="font-size:12px;margin-top:8px;color:#9ca3af">
-Deepfake executive fraud ranked <b>Critical (P4 × S5)</b>
+<p style="font-size:12px;color:#9ca3af;margin-top:8px">
+CEO voice deepfake fraud ranked <b>Critical Risk</b>
 </p>
 
 </div>
@@ -192,7 +228,7 @@ Deepfake executive fraud ranked <b>Critical (P4 × S5)</b>
 
 <div class="card">
 
-<h3>Risk Trend Simulation</h3>
+<h3>Risk Trend</h3>
 
 <canvas id="trend"></canvas>
 
@@ -202,15 +238,15 @@ Deepfake executive fraud ranked <b>Critical (P4 × S5)</b>
 
 <h3>Key Insights</h3>
 
-<ul style="font-size:13px">
+<ul class="plan">
 
-<li>AI voice deepfakes enable high-credibility fraud attempts</li>
+<li>AI deepfake voice enables credible executive impersonation</li>
 
-<li>Financial approvals rely heavily on executive voice authority</li>
+<li>Financial approvals rely heavily on verbal authority signals</li>
 
 <li>Existing controls detect cyber intrusion but not synthetic media</li>
 
-<li>Human trust remains primary vulnerability</li>
+<li>Human trust bias increases fraud success probability</li>
 
 </ul>
 
@@ -222,13 +258,13 @@ Deepfake executive fraud ranked <b>Critical (P4 × S5)</b>
 
 <ul class="plan">
 
-<li>Dual-authorization for transfers > €50K</li>
+<li>Dual approval for transfers above €50K</li>
 
-<li>Executive biometric voice authentication</li>
+<li>Voice authentication for executive requests</li>
 
 <li>AI deepfake detection integration</li>
 
-<li>Employee AI-phishing simulation training</li>
+<li>Employee AI-phishing simulations</li>
 
 <li>Incident escalation protocol</li>
 
@@ -251,14 +287,14 @@ datasets:[
 
 {
 label:'Security Risk',
-data:[40,85,80,55,30],
+data:[40,85,75,50,30],
 borderColor:'#ef4444',
 tension:.4
 },
 
 {
 label:'Control Strength',
-data:[30,35,50,70,85],
+data:[35,40,55,70,85],
 borderColor:'#38bdf8',
 tension:.4
 }
