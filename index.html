@@ -5,27 +5,34 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <style>
+
 body{
 font-family:Arial;
-background:#f4f6f9;
+background:#f0f4f8;
 margin:40px;
 }
 
 h1{
 text-align:center;
+color:#1f3c88;
 }
 
-.container{
+.grid{
 display:grid;
 grid-template-columns:1fr 1fr;
-grid-gap:20px;
+gap:25px;
+margin-top:30px;
 }
 
 .card{
 background:white;
 padding:20px;
-border-radius:10px;
-box-shadow:0 2px 8px rgba(0,0,0,0.1);
+border-radius:12px;
+box-shadow:0 4px 12px rgba(0,0,0,0.1);
+}
+
+h2{
+margin-top:0;
 }
 
 table{
@@ -33,15 +40,45 @@ width:100%;
 border-collapse:collapse;
 }
 
-th,td{
-padding:8px;
-border-bottom:1px solid #ddd;
-text-align:left;
+th{
+background:#1f3c88;
+color:white;
+padding:10px;
 }
 
-.priority{
-color:red;
+td{
+padding:10px;
+text-align:center;
+border-bottom:1px solid #ddd;
+}
+
+.high{
+background:#ff6b6b;
+color:white;
 font-weight:bold;
+}
+
+.medium{
+background:#ffd166;
+}
+
+.low{
+background:#95d5b2;
+}
+
+.risk-card{
+padding:15px;
+border-radius:8px;
+color:white;
+margin-bottom:10px;
+}
+
+.red{background:#e63946;}
+.orange{background:#f4a261;}
+.yellow{background:#e9c46a;}
+
+ul{
+padding-left:18px;
 }
 
 </style>
@@ -49,74 +86,57 @@ font-weight:bold;
 
 <body>
 
-<h1>E-NRG AI Risk Management Dashboard</h1>
+<h1>E-NRG Generative AI Risk Dashboard</h1>
 
-<div class="container">
+<div class="grid">
 
 <div class="card">
-<h2>Top 3 AI Risks</h2>
+<h2>Top 3 Priority Risks</h2>
 
-<table>
-<tr>
-<th>Risk</th>
-<th>Probability</th>
-<th>Severity</th>
-<th>Criticality</th>
-</tr>
+<div class="risk-card red">
+CEO Deepfake Fraud – €5M Transfer Attack
+</div>
 
-<tr>
-<td>CEO Deepfake Fraud</td>
-<td>4</td>
-<td>5</td>
-<td class="priority">20</td>
-</tr>
+<div class="risk-card orange">
+LLM Generated Phishing Campaign
+</div>
 
-<tr>
-<td>LLM Phishing Emails</td>
-<td>5</td>
-<td>4</td>
-<td class="priority">20</td>
-</tr>
+<div class="risk-card yellow">
+Training Data Poisoning
+</div>
 
-<tr>
-<td>Training Data Poisoning</td>
-<td>3</td>
-<td>4</td>
-<td>12</td>
-</tr>
-
-</table>
 </div>
 
 <div class="card">
-<h2>Risk Criticality Matrix (P × S)</h2>
+<h2>Risk Criticality Matrix</h2>
 <canvas id="riskChart"></canvas>
 </div>
 
 <div class="card">
-<h2>PESTLEO External Threats</h2>
+<h2>PESTLEO Threat Analysis</h2>
 
 <ul>
-<li><b>Political:</b> Critical infrastructure targeted by cyberwarfare</li>
-<li><b>Economic:</b> Financial fraud via AI impersonation</li>
-<li><b>Social:</b> Employee susceptibility to AI phishing</li>
-<li><b>Technological:</b> Deepfake voice synthesis</li>
-<li><b>Legal:</b> GDPR data breach liabilities</li>
+<li><b>Political:</b> Cyberwarfare targeting energy infrastructure</li>
+<li><b>Economic:</b> Large scale financial fraud attempts</li>
+<li><b>Social:</b> Employees vulnerable to AI phishing</li>
+<li><b>Technological:</b> Deepfake voice cloning</li>
+<li><b>Legal:</b> GDPR and compliance exposure</li>
 <li><b>Environmental:</b> Energy grid disruption risk</li>
-<li><b>Organizational:</b> Weak verification processes</li>
+<li><b>Organizational:</b> Weak financial verification processes</li>
 </ul>
 
 </div>
 
 <div class="card">
-<h2>Mitigation Plan</h2>
+
+<h2>Mitigation Strategy</h2>
 
 <ul>
-<li><b>Preventive:</b> AI-phishing training for employees</li>
-<li><b>Protective:</b> Multi-factor approval for wire transfers</li>
-<li><b>Protective:</b> Voice authentication for executives</li>
-<li><b>Curative:</b> Incident response protocol</li>
-<li><b>Curative:</b> Financial fraud recovery procedures</li>
+<li>Multi-person verification for large transfers</li>
+<li>Executive voice authentication system</li>
+<li>AI-phishing employee training</li>
+<li>AI threat monitoring</li>
+<li>Incident response protocol</li>
 </ul>
 
 </div>
@@ -127,26 +147,35 @@ font-weight:bold;
 
 const ctx = document.getElementById('riskChart');
 
-new Chart(ctx, {
-type: 'scatter',
-data: {
-datasets: [{
-label: 'AI Risks',
-data: [
-{x:4,y:5},
-{x:5,y:4},
-{x:3,y:4}
-]
-}]
+new Chart(ctx,{
+type:'scatter',
+data:{
+datasets:[
+{
+label:'Deepfake Fraud',
+data:[{x:4,y:5}],
+backgroundColor:'red',
+pointRadius:10
 },
-options: {
-scales: {
-x: {
-title:{display:true,text:'Probability'}
+{
+label:'LLM Phishing',
+data:[{x:5,y:4}],
+backgroundColor:'orange',
+pointRadius:10
 },
-y: {
-title:{display:true,text:'Severity'}
+{
+label:'Data Poisoning',
+data:[{x:3,y:4}],
+backgroundColor:'gold',
+pointRadius:10
 }
+]
+},
+options:{
+plugins:{legend:{position:'bottom'}},
+scales:{
+x:{title:{display:true,text:'Probability (P)'},min:1,max:5},
+y:{title:{display:true,text:'Severity (S)'},min:1,max:5}
 }
 }
 });
